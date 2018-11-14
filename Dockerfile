@@ -31,9 +31,9 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 
 # JAVA
 ARG JAVA_MAJOR_VERSION=8
-ARG JAVA_UPDATE_VERSION=162
+ARG JAVA_UPDATE_VERSION=191
 ARG JAVA_BUILD_NUMBER=12
-ARG JAVA_HASH=0da788060d494f5095bf8624735fa2f1
+ARG JAVA_HASH=2787e4a523244c269598db4e85c51e0c
 ENV JAVA_HOME /usr/jdk1.${JAVA_MAJOR_VERSION}.0_${JAVA_UPDATE_VERSION}
 
 ENV PATH $PATH:$JAVA_HOME/bin
@@ -46,7 +46,7 @@ RUN curl -sL --retry 3 --insecure \
   && rm -rf $JAVA_HOME/man
 
 # HADOOP
-ENV HADOOP_VERSION 2.7.0
+ENV HADOOP_VERSION 2.8.5
 ENV HADOOP_HOME /usr/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
@@ -58,7 +58,7 @@ RUN curl -sL --retry 3 \
  && chown -R root:root $HADOOP_HOME
 
 # SPARK
-ENV SPARK_VERSION 2.2.1
+ENV SPARK_VERSION 2.3.2
 ENV SPARK_PACKAGE spark-${SPARK_VERSION}-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-${SPARK_VERSION}
 ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/tools/lib/*"
